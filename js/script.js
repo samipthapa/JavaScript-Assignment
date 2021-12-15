@@ -4,7 +4,16 @@ function validation() {
     var confirmPasswd = document.getElementById('confirm-password').value;
     var age = document.getElementById('age').value;
 
-    if (username.length < 6 || username.length > 30) {
+    if((username.length === 0) && (age.length === 0) && (passwd.length === 0) && (confirmPasswd.length === 0)) {
+        document.getElementById('error-message').innerHTML = 'The above fields cannot be empty';
+        return false;
+    }
+
+    if (username.length === 0) {
+        document.getElementById('error-message').innerHTML = 'Username field cannot be empty';
+        return false;
+    }
+    else if (username.length < 6 || username.length > 30) {
         document.getElementById('error-message').innerHTML = "Username should be between 6 and 30 characters long";
         return false;
     }
@@ -34,7 +43,7 @@ function validation() {
         return false;
     }
 
-    if (passwd != confirmPasswd) {
+    if (passwd !== confirmPasswd) {
         document.getElementById('error-message').innerHTML = "Password-Confirm Password does not meet the password";
         return false;
     }
